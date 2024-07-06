@@ -1,11 +1,15 @@
 import clsx from "clsx";
+import { useLocation } from "react-router-dom";
 
-function Header(props: { stepCount: number }) {
+function Header() {
+  const location = useLocation();
+  const currenLocation = location.pathname;
+
   return (
     <div className="flex justify-center gap-[1rem] mb-[2rem] pt-[2rem] pb-[8rem] bg-[url('/src/assets/bg-sidebar-mobile.svg')] bg-no-repeat bg-cover">
       <span
         className={clsx(
-          props.stepCount === 1
+          currenLocation === "/"
             ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
             : "text-[#FFF] border-[#FFF]",
           "px-[0.8rem] py-[0.6rem]  border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
@@ -15,7 +19,7 @@ function Header(props: { stepCount: number }) {
       </span>
       <span
         className={clsx(
-          props.stepCount === 2
+          currenLocation === "/select-plan"
             ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
             : "text-[#FFF] border-[#FFF]",
           "px-[0.8rem] py-[0.6rem]  border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
@@ -25,7 +29,7 @@ function Header(props: { stepCount: number }) {
       </span>
       <span
         className={clsx(
-          props.stepCount === 3
+          currenLocation === "/pick-add-ons"
             ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
             : "text-[#FFF] border-[#FFF]",
           "px-[0.8rem] py-[0.6rem]  border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
@@ -35,7 +39,7 @@ function Header(props: { stepCount: number }) {
       </span>
       <span
         className={clsx(
-          props.stepCount === 4
+          currenLocation === "/finishing-up"
             ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
             : "text-[#FFF] border-[#FFF]",
           "px-[0.8rem] py-[0.6rem]  border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"

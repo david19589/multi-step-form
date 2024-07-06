@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z, ZodType } from "zod";
 import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 type FormData = {
   name: string;
@@ -39,12 +41,32 @@ function PersonalInfo(props: {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phoneNumber: "",
+    },
   });
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("formData");
+    if (savedData) {
+      const formData = JSON.parse(savedData);
+      setValue("name", formData.name);
+      setValue("email", formData.email);
+      setValue("phoneNumber", formData.phoneNumber);
+    }
+  }, [setValue]);
+
   const onSubmit = (data: FormData) => {
+    localStorage.setItem("formData", JSON.stringify(data));
     props.setStepCount(props.stepCount + 1);
+    navigate("/select-plan");
     return data;
   };
 
@@ -126,27 +148,13 @@ function PersonalInfo(props: {
           </div>
         </form>
       </div>
-      <div className="flex items-center justify-between absolute bottom-0 left-0 right-0 p-[1rem] bg-[#FFF]">
-        <h3
-          className={clsx(
-            props.stepCount > 1 ? "text-[#9699AA]" : "text-[#FFF]",
-            "text-[1rem] leading-[1rem] font-[500]"
-          )}
+      <div className="flex items-center justify-end absolute bottom-0 left-0 right-0 p-[1rem] bg-[#FFF]">
+        <button
+          onClick={handleSubmit(onSubmit)}
+          className="text-[1rem] leading-[1rem] font-[500] text-[#FFF]  px-[1rem] py-[0.8rem] bg-[#022959] outline-none"
         >
-          Go Back
-        </h3>
-        {props.stepCount > 3 ? (
-          <button className="text-[1rem] leading-[1rem] font-[500] text-[#FFF] px-[1rem] py-[0.8rem] bg-[#483EFF] outline-none">
-            Confirm
-          </button>
-        ) : (
-          <button
-            onClick={handleSubmit(onSubmit)}
-            className="text-[1rem] leading-[1rem] font-[500] text-[#FFF]  px-[1rem] py-[0.8rem] bg-[#022959] outline-none"
-          >
-            Next Step
-          </button>
-        )}
+          Next Step
+        </button>
       </div>
     </div>
   );
