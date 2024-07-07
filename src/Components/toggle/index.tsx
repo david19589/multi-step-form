@@ -11,6 +11,7 @@ function Toggle(props: {
           }}
           type="checkbox"
           id="checkbox"
+          checked={props.isToggled}
           className="sr-only peer"
         />
         <div className="relative w-11 h-6 bg-[#022959] color-[#FFF] rounded-full peer peer-checked:after:translate-x-full after:absolute after:top-[0.25rem] after:start-[0.4rem] after:bg-[#FFF] after:rounded-full after:h-[1rem] after:w-[1rem] after:transition-all"></div>

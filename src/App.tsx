@@ -6,7 +6,9 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Header />
+        <div className="lg:hidden">
+          <Header />
+        </div>
         <PageRoutes />
       </div>
     </BrowserRouter>
