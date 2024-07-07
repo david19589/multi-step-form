@@ -2,29 +2,24 @@ import { Route, Routes } from "react-router-dom";
 import PersonalInfo from "../Components/personal-info";
 import SelectPlan from "./select-plan";
 import { useState } from "react";
+import PickAddOns from "./pick-add-ons";
+import FinishingUp from "./finishing-up";
+import Finish from "./finish";
 
 function PageRoutes() {
-  const [stepCount, setStepCount] = useState(1);
   const [isToggled, setIsToggled] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(1);
+  const [onlineService, setOnlineService] = useState(false);
+  const [largerStorage, setLargerStorage] = useState(false);
+  const [customizableProfile, setCustomizableProfile] = useState(false);
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <PersonalInfo
-            stepCount={stepCount}
-            setStepCount={setStepCount}
-          />
-        }
-      ></Route>
+      <Route path="/" element={<PersonalInfo />}></Route>
       <Route
         path="/select-plan"
         element={
           <SelectPlan
-            stepCount={stepCount}
-            setStepCount={setStepCount}
             isToggled={isToggled}
             setIsToggled={setIsToggled}
             selectedPlan={selectedPlan}
@@ -32,6 +27,37 @@ function PageRoutes() {
           />
         }
       ></Route>
+      <Route
+        path="/pick-add-ons"
+        element={
+          <PickAddOns
+            isToggled={isToggled}
+            onlineService={onlineService}
+            setOnlineService={setOnlineService}
+            largerStorage={largerStorage}
+            setLargerStorage={setLargerStorage}
+            customizableProfile={customizableProfile}
+            setCustomizableProfile={setCustomizableProfile}
+          />
+        }
+      ></Route>
+      <Route
+        path="/finishing-up"
+        element={
+          <FinishingUp
+            isToggled={isToggled}
+            selectedPlan={selectedPlan}
+            setSelectedPlan={setSelectedPlan}
+            onlineService={onlineService}
+            setOnlineService={setOnlineService}
+            largerStorage={largerStorage}
+            setLargerStorage={setLargerStorage}
+            customizableProfile={customizableProfile}
+            setCustomizableProfile={setCustomizableProfile}
+          />
+        }
+      ></Route>
+      <Route path="/finish" element={<Finish />}></Route>
     </Routes>
   );
 }

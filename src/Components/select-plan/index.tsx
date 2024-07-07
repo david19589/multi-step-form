@@ -1,13 +1,11 @@
 import arcadeSvg from "/src/assets/icon-arcade.svg";
 import advancedSvg from "/src/assets/icon-advanced.svg";
 import proSvg from "/src/assets/icon-pro.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import Toggle from "../toggle";
 
 function SelectPlan(props: {
-  stepCount: number;
-  setStepCount: (status: number) => void;
   isToggled: boolean;
   setIsToggled: (status: boolean) => void;
   selectedPlan: number;
@@ -16,7 +14,6 @@ function SelectPlan(props: {
   const navigate = useNavigate();
 
   const onSubmit = () => {
-    props.setStepCount(props.stepCount + 1);
     navigate("/pick-add-ons");
   };
 
@@ -40,7 +37,7 @@ function SelectPlan(props: {
               props.selectedPlan === 1
                 ? "border-[#483EFF] bg-[#F8F9FF]"
                 : "border-[#D6D9E6]",
-              "flex gap-[1rem] px-[1rem] py-[1rem] border-[0.08rem] rounded-xl cursor-pointer mb-[0.8rem] transition-all duration-200"
+              "flex gap-[1rem] px-[1rem] py-[1rem] border-[0.08rem] rounded-xl cursor-pointer mb-[0.8rem] transition-all duration-200 hover:border-[#483EFF]"
             )}
           >
             <img src={arcadeSvg} alt="arcadeSvg" />
@@ -61,7 +58,7 @@ function SelectPlan(props: {
               props.selectedPlan === 2
                 ? "border-[#483EFF] bg-[#F8F9FF]"
                 : "border-[#D6D9E6]",
-              "flex gap-[1rem] px-[1rem] py-[1rem] border-[0.08rem] rounded-xl cursor-pointer mb-[0.8rem] transition-all duration-200"
+              "flex gap-[1rem] px-[1rem] py-[1rem] border-[0.08rem] rounded-xl cursor-pointer mb-[0.8rem] transition-all duration-200 hover:border-[#483EFF]"
             )}
           >
             <img src={advancedSvg} alt="advancedSvg" />
@@ -82,7 +79,7 @@ function SelectPlan(props: {
               props.selectedPlan === 3
                 ? "border-[#483EFF] bg-[#F8F9FF]"
                 : "border-[#D6D9E6]",
-              "flex gap-[1rem] px-[1rem] py-[1rem] border-[0.08rem] rounded-xl cursor-pointer transition-all duration-200"
+              "flex gap-[1rem] px-[1rem] py-[1rem] border-[0.08rem] rounded-xl cursor-pointer transition-all duration-200 hover:border-[#483EFF]"
             )}
           >
             <img src={proSvg} alt="proSvg" />
@@ -120,22 +117,20 @@ function SelectPlan(props: {
         </div>
       </div>
       <div className="flex items-center justify-between absolute bottom-0 left-0 right-0 p-[1rem] bg-[#FFF]">
-        <Link to="/">
-          <h3
-            onClick={() => {
-              props.setStepCount(props.stepCount - 1);
-            }}
-            className="text-[1rem] leading-[1rem] font-[500] text-[#9699AA] cursor-pointer"
-          >
-            Go Back
-          </h3>
-        </Link>
-          <button
-            onClick={onSubmit}
-            className="text-[1rem] leading-[1rem] font-[500] text-[#FFF]  px-[1rem] py-[0.8rem] bg-[#022959] outline-none"
-          >
-            Next Step
-          </button>
+        <h3
+          onClick={() => {
+            navigate("/");
+          }}
+          className="text-[1rem] leading-[1rem] font-[500] text-[#9699AA] cursor-pointer"
+        >
+          Go Back
+        </h3>
+        <button
+          onClick={onSubmit}
+          className="text-[1rem] leading-[1rem] font-[500] text-[#FFF]  px-[1rem] py-[0.8rem] bg-[#022959] rounded-md outline-none"
+        >
+          Next Step
+        </button>
       </div>
     </div>
   );

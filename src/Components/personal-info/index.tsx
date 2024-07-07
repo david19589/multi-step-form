@@ -33,10 +33,7 @@ const schema: ZodType<FormData> = z.object({
     .max(15, { message: "max numbers 15" }),
 });
 
-function PersonalInfo(props: {
-  stepCount: number;
-  setStepCount: (status: number) => void;
-}) {
+function PersonalInfo() {
   const {
     register,
     handleSubmit,
@@ -65,7 +62,6 @@ function PersonalInfo(props: {
 
   const onSubmit = (data: FormData) => {
     localStorage.setItem("formData", JSON.stringify(data));
-    props.setStepCount(props.stepCount + 1);
     navigate("/select-plan");
     return data;
   };
@@ -151,7 +147,7 @@ function PersonalInfo(props: {
       <div className="flex items-center justify-end absolute bottom-0 left-0 right-0 p-[1rem] bg-[#FFF]">
         <button
           onClick={handleSubmit(onSubmit)}
-          className="text-[1rem] leading-[1rem] font-[500] text-[#FFF]  px-[1rem] py-[0.8rem] bg-[#022959] outline-none"
+          className="text-[1rem] leading-[1rem] font-[500] text-[#FFF]  px-[1rem] py-[0.8rem] bg-[#022959] rounded-md outline-none"
         >
           Next Step
         </button>

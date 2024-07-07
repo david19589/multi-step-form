@@ -3,13 +3,13 @@ import { useLocation } from "react-router-dom";
 
 function Header() {
   const location = useLocation();
-  const currenLocation = location.pathname;
+  const currentLocation = location.pathname;
 
   return (
     <div className="flex justify-center gap-[1rem] mb-[2rem] pt-[2rem] pb-[8rem] bg-[url('/src/assets/bg-sidebar-mobile.svg')] bg-no-repeat bg-cover">
       <span
         className={clsx(
-          currenLocation === "/"
+          currentLocation === "/"
             ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
             : "text-[#FFF] border-[#FFF]",
           "px-[0.8rem] py-[0.6rem]  border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
@@ -19,7 +19,7 @@ function Header() {
       </span>
       <span
         className={clsx(
-          currenLocation === "/select-plan"
+          currentLocation === "/select-plan"
             ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
             : "text-[#FFF] border-[#FFF]",
           "px-[0.8rem] py-[0.6rem]  border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
@@ -29,7 +29,7 @@ function Header() {
       </span>
       <span
         className={clsx(
-          currenLocation === "/pick-add-ons"
+          currentLocation === "/pick-add-ons"
             ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
             : "text-[#FFF] border-[#FFF]",
           "px-[0.8rem] py-[0.6rem]  border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
@@ -39,7 +39,7 @@ function Header() {
       </span>
       <span
         className={clsx(
-          currenLocation === "/finishing-up"
+          currentLocation === "/finishing-up" || currentLocation === "/finish"
             ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
             : "text-[#FFF] border-[#FFF]",
           "px-[0.8rem] py-[0.6rem]  border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
