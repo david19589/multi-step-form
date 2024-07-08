@@ -25,8 +25,8 @@ function PickAddOns(props: {
   };
 
   return (
-    <div className="lg:items-center lg:h-[100vh] flex justify-center">
-      <div className="lg:translate-y-0 lg:p-[1rem] lg:flex lg:justify-between lg:max-w-[60rem] lg:h-[38rem] px-[1.5rem] py-[2rem] mx-[1rem] bg-[#FFF] rounded-xl w-full max-w-[24rem] translate-y-[7rem]">
+    <div className="lg:items-center min-h-[100vh] relative flex justify-center">
+      <div className="lg:translate-y-0 lg:p-[1rem] lg:flex lg:justify-between lg:max-w-[60rem] lg:h-[38rem] px-[1.5rem] py-[2rem] mx-[1rem] bg-[#FFF] rounded-xl w-full max-w-[24rem] h-max translate-y-[7rem]">
         <div className="lg:flex hidden">
           <Header />
         </div>
