@@ -6,14 +6,14 @@ function Header() {
   const currentLocation = location.pathname;
 
   return (
-    <div className="lg:rounded-lg lg:w-[17rem] lg:mb-0 lg:flex-col lg:justify-start lg:p-[2rem] lg:gap-[2rem] flex justify-center gap-[1rem] mb-[2rem] pt-[2rem] pb-[8rem] lg:bg-[url('/src/assets/bg-sidebar-desktop.svg')] bg-[url('/src/assets/bg-sidebar-mobile.svg')] bg-no-repeat bg-cover">
+    <div className="lg:rounded-lg lg:w-[17rem] lg:mb-0 lg:flex-col lg:justify-start lg:relative lg:p-[2rem] lg:gap-[2rem] flex justify-center gap-[1rem] mb-[2rem] pt-[2rem] pb-[8rem] absolute top-0 left-0 right-0 lg:bg-[url('/src/assets/bg-sidebar-desktop.svg')] bg-[url('/src/assets/bg-sidebar-mobile.svg')] bg-no-repeat bg-cover">
       <div className="lg:flex lg:items-center lg:gap-[1rem]">
         <span
           className={clsx(
             currentLocation === "/"
               ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
               : "text-[#FFF] border-[#FFF]",
-            "px-[0.8rem] py-[0.6rem] w-max  border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
+            "px-[0.9rem] py-[0.6rem] w-max  border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
           )}
         >
           1
@@ -33,7 +33,7 @@ function Header() {
             currentLocation === "/select-plan"
               ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
               : "text-[#FFF] border-[#FFF]",
-            "px-[0.8rem] py-[0.6rem] w-max border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
+            "px-[0.9rem] py-[0.6rem] w-max border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
           )}
         >
           2
@@ -53,7 +53,7 @@ function Header() {
             currentLocation === "/pick-add-ons"
               ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
               : "text-[#FFF] border-[#FFF]",
-            "px-[0.8rem] py-[0.6rem] w-max border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
+            "px-[0.9rem] py-[0.6rem] w-max border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
           )}
         >
           3
@@ -73,7 +73,7 @@ function Header() {
             currentLocation === "/finishing-up" || currentLocation === "/finish"
               ? "text-[#022959] bg-[#BEE2FD] border-[#BEE2FD]"
               : "text-[#FFF] border-[#FFF]",
-            "px-[0.8rem] py-[0.6rem] w-max border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
+            "px-[0.9rem] py-[0.6rem] w-max border-[0.065rem] rounded-full text-[1rem] leading-[1rem] font-[700]"
           )}
         >
           4
