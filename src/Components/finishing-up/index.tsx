@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 function FinishingUp(props: {
   isToggled: boolean;
+  setIsToggled: (status: boolean) => void;
   selectedPlan: number;
   setSelectedPlan: (status: number) => void;
   onlineService: boolean;
@@ -18,6 +19,11 @@ function FinishingUp(props: {
 
   const onSubmit = () => {
     localStorage.removeItem("formData");
+    props.setIsToggled(false);
+    props.setSelectedPlan(1);
+    props.setOnlineService(false);
+    props.setLargerStorage(false);
+    props.setCustomizableProfile(false);
     navigate("/finish");
   };
 

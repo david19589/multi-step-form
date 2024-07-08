@@ -46,6 +46,7 @@ function PageRoutes() {
         element={
           <FinishingUp
             isToggled={isToggled}
+            setIsToggled={setIsToggled}
             selectedPlan={selectedPlan}
             setSelectedPlan={setSelectedPlan}
             onlineService={onlineService}
