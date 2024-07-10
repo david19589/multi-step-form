@@ -1,6 +1,6 @@
-import Header from "./Components/header";
+import Header from "./components/header";
 import { BrowserRouter } from "react-router-dom";
-import PageRoutes from "./Components/routes";
+import PageRoutes from "./routes";
 
 function App() {
   return (

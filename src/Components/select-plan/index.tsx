@@ -6,13 +6,12 @@ import clsx from "clsx";
 import Toggle from "../toggle";
 import Header from "../header";
 import { motion } from "framer-motion";
+import { useStateContext } from '../../utils/use-state-context';
 
-function SelectPlan(props: {
-  isToggled: boolean;
-  setIsToggled: (status: boolean) => void;
-  selectedPlan: number;
-  setSelectedPlan: (status: number) => void;
-}) {
+function SelectPlan() {
+  const { isToggled, setIsToggled, selectedPlan, setSelectedPlan } =
+    useStateContext();
+
   const navigate = useNavigate();
 
   const onSubmit = () => {
@@ -42,10 +41,10 @@ function SelectPlan(props: {
             <div className="lg:flex lg:gap-[1.2rem] mb-[1.5rem]">
               <div
                 onClick={() => {
-                  props.setSelectedPlan(1);
+                  setSelectedPlan(1);
                 }}
                 className={clsx(
-                  props.selectedPlan === 1
+                  selectedPlan === 1
                     ? "border-[#483EFF] bg-[#F8F9FF]"
                     : "border-[#D6D9E6]",
                   "lg:flex-col lg:w-[9rem] flex gap-[1rem] px-[1rem] py-[1rem] border-[0.08rem] rounded-xl cursor-pointer mb-[0.8rem] transition-all duration-200 hover:border-[#483EFF]"
@@ -61,16 +60,16 @@ function SelectPlan(props: {
                     Arcade
                   </h2>
                   <span className="text-[0.9rem] leading-[1.3rem] font-[400] text-[#9699AA]">
-                    {props.isToggled ? "$90/yr" : "$9/mo"}
+                    {isToggled ? "$90/yr" : "$9/mo"}
                   </span>
                 </div>
               </div>
               <div
                 onClick={() => {
-                  props.setSelectedPlan(2);
+                  setSelectedPlan(2);
                 }}
                 className={clsx(
-                  props.selectedPlan === 2
+                  selectedPlan === 2
                     ? "border-[#483EFF] bg-[#F8F9FF]"
                     : "border-[#D6D9E6]",
                   "lg:flex-col lg:w-[9rem] flex gap-[1rem] px-[1rem] py-[1rem] border-[0.08rem] rounded-xl cursor-pointer mb-[0.8rem] transition-all duration-200 hover:border-[#483EFF]"
@@ -86,16 +85,16 @@ function SelectPlan(props: {
                     Advanced
                   </h2>
                   <span className="text-[0.9rem] leading-[1.3rem] font-[400] text-[#9699AA]">
-                    {props.isToggled ? "$120/yr" : "$12/mo"}
+                    {isToggled ? "$120/yr" : "$12/mo"}
                   </span>
                 </div>
               </div>
               <div
                 onClick={() => {
-                  props.setSelectedPlan(3);
+                  setSelectedPlan(3);
                 }}
                 className={clsx(
-                  props.selectedPlan === 3
+                  selectedPlan === 3
                     ? "border-[#483EFF] bg-[#F8F9FF]"
                     : "border-[#D6D9E6]",
                   "lg:flex-col lg:w-[9rem] lg:mb-[0.8rem] flex gap-[1rem] px-[1rem] py-[1rem] border-[0.08rem] rounded-xl cursor-pointer transition-all duration-200 hover:border-[#483EFF]"
@@ -111,7 +110,7 @@ function SelectPlan(props: {
                     Pro
                   </h2>
                   <span className="text-[0.9rem] leading-[1.3rem] font-[400] text-[#9699AA]">
-                    {props.isToggled ? "$150/yr" : "$15/mo"}
+                    {isToggled ? "$150/yr" : "$15/mo"}
                   </span>
                 </div>
               </div>
@@ -119,19 +118,16 @@ function SelectPlan(props: {
             <div className="flex justify-center items-center py-[0.9rem] bg-[#F8F9FF] rounded-xl">
               <h2
                 className={clsx(
-                  props.isToggled ? "text-[#9699AA]" : "text-[#022959]",
+                  isToggled ? "text-[#9699AA]" : "text-[#022959]",
                   "text-[0.9rem] leading-[1rem] font-[500]"
                 )}
               >
                 Monthly
               </h2>
-              <Toggle
-                isToggled={props.isToggled}
-                setIsToggled={props.setIsToggled}
-              />
+              <Toggle isToggled={isToggled} setIsToggled={setIsToggled} />
               <h2
                 className={clsx(
-                  props.isToggled ? "text-[#022959]" : "text-[#9699AA]",
+                  isToggled ? "text-[#022959]" : "text-[#9699AA]",
                   "text-[0.9rem] leading-[1rem] font-[500]"
                 )}
               >

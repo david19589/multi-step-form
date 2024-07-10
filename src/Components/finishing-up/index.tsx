@@ -2,51 +2,54 @@ import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import Header from "../header";
 import { motion } from "framer-motion";
+import { useStateContext } from '../../utils/use-state-context';
 
-function FinishingUp(props: {
-  isToggled: boolean;
-  setIsToggled: (status: boolean) => void;
-  selectedPlan: number;
-  setSelectedPlan: (status: number) => void;
-  onlineService: boolean;
-  setOnlineService: (status: boolean) => void;
-  largerStorage: boolean;
-  setLargerStorage: (status: boolean) => void;
-  customizableProfile: boolean;
-  setCustomizableProfile: (status: boolean) => void;
-}) {
+function FinishingUp() {
+  const {
+    isToggled,
+    setIsToggled,
+    selectedPlan,
+    setSelectedPlan,
+    onlineService,
+    setOnlineService,
+    largerStorage,
+    setLargerStorage,
+    customizableProfile,
+    setCustomizableProfile,
+  } = useStateContext();
+  
   const navigate = useNavigate();
 
   const onSubmit = () => {
     localStorage.removeItem("formData");
-    props.setIsToggled(false);
-    props.setSelectedPlan(1);
-    props.setOnlineService(false);
-    props.setLargerStorage(false);
-    props.setCustomizableProfile(false);
+    setIsToggled(false);
+    setSelectedPlan(1);
+    setOnlineService(false);
+    setLargerStorage(false);
+    setCustomizableProfile(false);
     navigate("/finish");
   };
 
   const calculateTotal = () => {
     let total = 0;
 
-    if (props.selectedPlan === 1) {
-      total += props.isToggled ? 90 : 9;
+    if (selectedPlan === 1) {
+      total += isToggled ? 90 : 9;
     }
-    if (props.selectedPlan === 2) {
-      total += props.isToggled ? 120 : 12;
+    if (selectedPlan === 2) {
+      total += isToggled ? 120 : 12;
     }
-    if (props.selectedPlan === 3) {
-      total += props.isToggled ? 150 : 15;
+    if (selectedPlan === 3) {
+      total += isToggled ? 150 : 15;
     }
-    if (props.onlineService) {
-      total += props.isToggled ? 10 : 1;
+    if (onlineService) {
+      total += isToggled ? 10 : 1;
     }
-    if (props.largerStorage) {
-      total += props.isToggled ? 20 : 2;
+    if (largerStorage) {
+      total += isToggled ? 20 : 2;
     }
-    if (props.customizableProfile) {
-      total += props.isToggled ? 20 : 2;
+    if (customizableProfile) {
+      total += isToggled ? 20 : 2;
     }
 
     return total;
@@ -78,13 +81,13 @@ function FinishingUp(props: {
                   <div className="flex gap-[0.2rem]">
                     <h2 className="text-[1rem] leading-[1.2rem] font-[500] text-[#022959]">
                       {clsx(
-                        props.selectedPlan === 1 && "Arcade",
-                        props.selectedPlan === 2 && "Advanced",
-                        props.selectedPlan === 3 && "Pro"
+                        selectedPlan === 1 && "Arcade",
+                        selectedPlan === 2 && "Advanced",
+                        selectedPlan === 3 && "Pro"
                       )}
                     </h2>
                     <h2 className="text-[1rem] leading-[1.2rem] font-[500] text-[#022959]">
-                      {clsx(props.isToggled ? "(Yearly)" : "(Monthly)")}
+                      {clsx(isToggled ? "(Yearly)" : "(Monthly)")}
                     </h2>
                   </div>
                   <h3
@@ -98,18 +101,18 @@ function FinishingUp(props: {
                 </div>
                 <span className="text-[0.9rem] leading-[1.3rem] font-[700]  text-[#022959]">
                   {clsx(
-                    props.selectedPlan === 1 && props.isToggled && "$90/yr",
-                    props.selectedPlan === 1 && !props.isToggled && "$9/mo",
-                    props.selectedPlan === 2 && props.isToggled && "$120/yr",
-                    props.selectedPlan === 2 && !props.isToggled && "$12/mo",
-                    props.selectedPlan === 3 && props.isToggled && "$150/yr",
-                    props.selectedPlan === 3 && !props.isToggled && "$15/mo"
+                    selectedPlan === 1 && isToggled && "$90/yr",
+                    selectedPlan === 1 && !isToggled && "$9/mo",
+                    selectedPlan === 2 && isToggled && "$120/yr",
+                    selectedPlan === 2 && !isToggled && "$12/mo",
+                    selectedPlan === 3 && isToggled && "$150/yr",
+                    selectedPlan === 3 && !isToggled && "$15/mo"
                   )}
                 </span>
               </div>
               <span className="flex w-full h-[0.07rem] bg-[#9699AA] mt-[0.8rem] mb-[0.8rem] opacity-[20%]"></span>
               <div>
-                {props.onlineService && (
+                {onlineService && (
                   <div className="flex items-center justify-between gap-[1rem] mb-[0.6rem]">
                     <h3
                       onClick={() => {
@@ -120,11 +123,11 @@ function FinishingUp(props: {
                       Online service
                     </h3>
                     <span className="text-[0.9rem] leading-[1.3rem] font-[500]  text-[#022959]">
-                      {props.isToggled ? "+$10/yr" : "+$1/mo"}
+                      {isToggled ? "+$10/yr" : "+$1/mo"}
                     </span>
                   </div>
                 )}
-                {props.largerStorage && (
+                {largerStorage && (
                   <div className="flex items-center justify-between gap-[1rem] mb-[0.6rem]">
                     <h3
                       onClick={() => {
@@ -135,11 +138,11 @@ function FinishingUp(props: {
                       Larger storage
                     </h3>
                     <span className="text-[0.9rem] leading-[1.3rem] font-[500]  text-[#022959]">
-                      {props.isToggled ? "+$20/yr" : "+$2/mo"}
+                      {isToggled ? "+$20/yr" : "+$2/mo"}
                     </span>
                   </div>
                 )}
-                {props.customizableProfile && (
+                {customizableProfile && (
                   <div className="flex items-center justify-between gap-[1rem]">
                     <h3
                       onClick={() => {
@@ -150,7 +153,7 @@ function FinishingUp(props: {
                       Customizable profile
                     </h3>
                     <span className="text-[0.9rem] leading-[1.3rem] font-[500]  text-[#022959]">
-                      {props.isToggled ? "+$20/yr" : "+$2/mo"}
+                      {isToggled ? "+$20/yr" : "+$2/mo"}
                     </span>
                   </div>
                 )}
@@ -158,11 +161,11 @@ function FinishingUp(props: {
             </div>
             <div className="flex items-center justify-between gap-[1rem] p-[1rem]">
               <h3 className="text-[0.9rem] leading-[1.2rem] font-[400] text-[#9699AA]">
-                Total {props.isToggled ? "(Yearly)" : "(Monthly)"}
+                Total {isToggled ? "(Yearly)" : "(Monthly)"}
               </h3>
               <span className="text-[1rem] leading-[1.3rem] font-[700]  text-[#483EFF]">
                 ${calculateTotal()}
-                {props.isToggled ? "/yr" : "/mo"}
+                {isToggled ? "/yr" : "/mo"}
               </span>
             </div>
           </motion.div>
